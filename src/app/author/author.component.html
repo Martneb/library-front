@@ -1,0 +1,18 @@
+<div class="table_cont">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Birthday</th>
+      <th scope="col">Book(s)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let author of authors">
+      <td>{{author.name}}</td>
+      <td>{{author.birthDate}}</td>
+      <td *ngFor="let book of author.books">{{book.name}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

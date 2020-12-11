@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BookComponent } from './book/book.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AuthorComponent } from './author/author.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BookComponent
+    BookComponent,
+    AuthorComponent
   ],
   imports: [
     HttpClientModule,
