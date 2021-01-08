@@ -12,6 +12,7 @@ export class ApiService {
   private BASE_URL = `http://localhost:8080/`
   //BOOK
   private GET_ALL_BOOK = `${this.BASE_URL}/book/all`
+  private POST_BOOK = `${this.BASE_URL}/book/save`
   //AUTHOR
   private GET_ALL_AUTHORS = `${this.BASE_URL}/author/all`
 
@@ -20,6 +21,10 @@ export class ApiService {
 
   getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.GET_ALL_BOOK)
+  }
+
+  saveBook(book:Book): Observable<Book> {
+    return this.http.post<Book>(this.POST_BOOK,book)
   }
 
   getAllAuthors(): Observable<Author[]>{
