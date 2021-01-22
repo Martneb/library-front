@@ -49,7 +49,7 @@ export class BookComponent implements OnInit {
     this.apiService.saveBook(this.book).subscribe(
       //Recieves book without UUID, returns Book with UUID
       res => {
-          this.book = res;
+        this.book = res;
       },
       err => {
         alert("Book couldn't be saved")

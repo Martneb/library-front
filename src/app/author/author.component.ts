@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../shared/api.service";
 import {Author} from "../model/author";
+import {Book} from "../model/book";
 
 @Component({
   selector: 'app-author',
@@ -10,19 +11,43 @@ import {Author} from "../model/author";
 export class AuthorComponent implements OnInit {
 
   authors: Author[] = [];
-  constructor(private apiService: ApiService) { }
+  author: Author = {
+    uuid: "",
+    name: "",
+    birthDate: "",
+    books: []
+  }
+
+  constructor(private apiService: ApiService) {
+  }
 
   ngOnInit(): void {
     this.getAllAuthors();
   }
-  getAllAuthors(){
+
+  getAllAuthors() {
     this.apiService.getAllAuthors().subscribe(
-      res =>{
+      res => {
         this.authors = res;
       },
       error => {
         alert("No authors found, something went wrong")
       }
     );
+  }
+
+  saveAuthor(author: Author) {
+    //Sending object of Author that has only the "name"
+    this.apiService.saveAuthor(author).subscribe(
+      res => {
+        //getting back the object of Author with uuid and name
+        //adding that object to the list of authors
+        this.authors.push(res)
+        this.author.name = "";
+      },
+      err => {
+        alert("Author couldn't be saved")
+      }
+    )
   }
 }

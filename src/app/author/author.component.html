@@ -1,18 +1,39 @@
-<div class="table_cont">
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Birthday</th>
-      <th scope="col">Book(s)</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let author of authors">
-      <td>{{author.name}}</td>
-      <td>{{author.birthDate}}</td>
-      <td *ngFor="let book of author.books">{{book.name}}</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+     <!--Form -->
+    <div class="col-4">
+      <form #f="ngForm" (ngSubmit)="saveAuthor(this.author)">
+        <div class="form-group">
+          <label for="authorName">Name</label>
+          <input type="text" class="form-control" id="authorName" [(ngModel)]="author.name" name="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for ="authorBirth">BirthDate</label>
+          <input type="date" class="form-control" id="authorBirth" [(ngModel)]="author.birthDate" name="birthDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <!--Table-->
+    <div class="table_cont col-8">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Book(s)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let author of authors">
+          <td>{{author.name}}</td>
+          <td>{{author.birthDate}}</td>
+          <td *ngFor="let book of author.books">{{book.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+

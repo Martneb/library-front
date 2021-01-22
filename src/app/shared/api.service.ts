@@ -15,6 +15,7 @@ export class ApiService {
   private POST_BOOK = `${this.BASE_URL}/book/save`
   //AUTHOR
   private GET_ALL_AUTHORS = `${this.BASE_URL}/author/all`
+  private POST_AUTHOR = `${this.BASE_URL}/author/save`
 
   constructor(private http: HttpClient) {
   }
@@ -29,5 +30,9 @@ export class ApiService {
 
   getAllAuthors(): Observable<Author[]>{
     return this.http.get<Author[]>(this.GET_ALL_AUTHORS)
+  }
+
+  saveAuthor(author:Author): Observable<Author>{
+    return this.http.post<Author>(this.POST_AUTHOR,author)
   }
 }
