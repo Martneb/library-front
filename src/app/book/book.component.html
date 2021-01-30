@@ -1,24 +1,68 @@
-<div class="table_cont">
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Release Date</th>
-      <th scope="col">Author(s)</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Pages</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let book of books">
-      <td>{{book.name}}</td>
-      <td>{{book.description}}</td>
-      <td>{{book.releaseDate}}</td>
-      <td>{{book.authorIDs}}</td>
-      <td>{{book.quantity}}</td>
-      <td>{{book.pages}}</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <form #f="ngForm" (ngSubmit)="saveBook()">
+        <div class="form-group">
+          <label for="bookName">Name</label>
+          <input type="text" class="form-control" id="bookName" [(ngModel)]="book.name" name="name" placeholder="Enter name">
+        </div>
+        <div class="form-group">
+          <label for="bookDescription">Description</label>
+          <textarea class="form-control" id="bookDescription" [(ngModel)]="book.description" name="description" placeholder="Enter description"  rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for ="bookRelease">Release Date</label>
+          <input type="date" class="form-control" id="bookRelease" [(ngModel)]="book.releaseDate" name="birthDate">
+        </div>
+        <div class="form-group">
+          <label for ="authorID">Author: </label>
+            <select name="authorID" id="authorID">
+              <option [value]="author.uuid" *ngFor="let author of authors" [ngModel]="book.authorID"> {{author.name}}
+              </option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="bookQuantity">Quantity</label>
+          <input type="text" class="form-control" id="bookQuantity" [(ngModel)]="book.quantity" name="quantity" placeholder="Enter Quantity">
+        </div>
+        <div class="form-group">
+          <label for="bookPages">Pages</label>
+          <input type="text" class="form-control" id="bookPages" [(ngModel)]="book.pages" name="pages" placeholder="Enter page amount">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <!--Get List of Authors, display with foreach, and make it selectable-->
+    </div>
+
+    <!--Table-->
+    <div class="table_cont col-8">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Release Date</th>
+          <th scope="col">Author(s)</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Pages</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{book.name}}</td>
+          <td>
+            <div class="scrollable">
+            {{book.description}}
+            </div>
+          </td>
+          <td>{{book.releaseDate}}</td>
+          <td>{{book.authorID}}</td>
+          <td>{{book.quantity}}</td>
+          <td>{{book.pages}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

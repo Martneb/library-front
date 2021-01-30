@@ -1,0 +1,7 @@
+div.scrollable {
+  width: 100%;
+  max-height:100px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}

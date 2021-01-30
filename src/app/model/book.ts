@@ -3,7 +3,7 @@ export interface Book {
   name: string;
   description: string;
   releaseDate: string;
-  authorIDs: string[];
+  authorID: string;
   quantity: string;
   pages: string;
 }
