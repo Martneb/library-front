@@ -5,3 +5,17 @@ div.scrollable {
   padding: 0;
   overflow: auto;
 }
+.dropdown-menu{
+  width: 500%;
+}
+.form-title{
+  position: absolute;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  transform: translate(250%);
+  font-size: 20px;
+}
+.book-form{
+  padding-top: 20px;
+  padding-bottom: 10px;
+}

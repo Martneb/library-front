@@ -1,42 +1,55 @@
 <div class="container">
   <div class="row">
-    <div class="col-4">
-      <form #f="ngForm" (ngSubmit)="saveBook()">
-        <div class="form-group">
-          <label for="bookName">Name</label>
-          <input type="text" class="form-control" id="bookName" [(ngModel)]="book.name" name="name" placeholder="Enter name">
+    <div class="btn-group book-form">
+      <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          Add Book
+        </button>
+        <div class="dropdown-menu dropdown">
+          <strong class="form-title">Add Book</strong>
+          <form #f="ngForm" (ngSubmit)="saveBook()" class="border-light p-5">
+            <div class="form-group">
+              <label for="bookName">Name</label>
+              <input type="text" class="form-control" id="bookName" [(ngModel)]="book.name" name="name"
+                     placeholder="Enter name">
+            </div>
+            <div class="form-group">
+              <label for="bookDescription">Description</label>
+              <textarea class="form-control" id="bookDescription" [(ngModel)]="book.description" name="description"
+                        placeholder="Enter description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="bookRelease">Release Date</label>
+              <input type="date" class="form-control" id="bookRelease" [(ngModel)]="book.releaseDate" name="birthDate">
+            </div>
+            <div class="form-group">
+              <label for="authorID">Author: </label>
+              <select name="authorID" id="authorID" class="custom-select">
+                <option [value]="author.uuid" *ngFor="let author of authors" [ngModel]="book.authorID"> {{author.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bookQuantity">Quantity</label>
+              <input type="text" class="form-control" id="bookQuantity" [(ngModel)]="book.quantity" name="quantity"
+                     placeholder="Enter Quantity">
+            </div>
+            <div class="form-group">
+              <label for="bookPages">Pages</label>
+              <input type="text" class="form-control" id="bookPages" [(ngModel)]="book.pages" name="pages"
+                     placeholder="Enter page amount">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="bookDescription">Description</label>
-          <textarea class="form-control" id="bookDescription" [(ngModel)]="book.description" name="description" placeholder="Enter description"  rows="3"></textarea>
-        </div>
-        <div class="form-group">
-          <label for ="bookRelease">Release Date</label>
-          <input type="date" class="form-control" id="bookRelease" [(ngModel)]="book.releaseDate" name="birthDate">
-        </div>
-        <div class="form-group">
-          <label for ="authorID">Author: </label>
-            <select name="authorID" id="authorID">
-              <option [value]="author.uuid" *ngFor="let author of authors" [ngModel]="book.authorID"> {{author.name}}
-              </option>
-            </select>
-        </div>
-        <div class="form-group">
-          <label for="bookQuantity">Quantity</label>
-          <input type="text" class="form-control" id="bookQuantity" [(ngModel)]="book.quantity" name="quantity" placeholder="Enter Quantity">
-        </div>
-        <div class="form-group">
-          <label for="bookPages">Pages</label>
-          <input type="text" class="form-control" id="bookPages" [(ngModel)]="book.pages" name="pages" placeholder="Enter page amount">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-
-      <!--Get List of Authors, display with foreach, and make it selectable-->
+      </div>
     </div>
 
+  </div>
+  <div class="row">
     <!--Table-->
-    <div class="table_cont col-8">
+    <div class="table_cont">
       <table class="table">
         <thead>
         <tr>
@@ -53,7 +66,7 @@
           <td>{{book.name}}</td>
           <td>
             <div class="scrollable">
-            {{book.description}}
+              {{book.description}}
             </div>
           </td>
           <td>{{book.releaseDate}}</td>
