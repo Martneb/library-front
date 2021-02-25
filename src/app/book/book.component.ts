@@ -40,6 +40,7 @@ export class BookComponent implements OnInit {
       res => {
         // write what you do with the response
         this.books = res;
+        // TODO: set the author by bookId
       },
       err => {
         // write what you do in case of an error

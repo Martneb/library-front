@@ -25,8 +25,8 @@
             </div>
             <div class="form-group">
               <label for="authorID">Author: </label>
-              <select name="authorID" id="authorID" class="custom-select">
-                <option [value]="author.uuid" *ngFor="let author of authors" [ngModel]="book.authorID"> {{author.name}}
+              <select name="authorID" id="authorID" class="custom-select" [ngModel]="authors">
+                <option [value]="author.uuid" *ngFor="let author of authors"> {{author.name}}
                 </option>
               </select>
             </div>
