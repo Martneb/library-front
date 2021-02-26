@@ -60,6 +60,16 @@ export class BookComponent implements OnInit {
     );
   }
 
+  getAuthorNameByID(authorID: string): string{
+    //Iterate thorugh the list of authors, and find the author which id matches the parameter id, get and return the name of that author
+    let author = this.authors.find(author => author.uuid===authorID);
+    if (author!=undefined){
+      return author.name;
+    }
+    return "n/a";
+  }
+
+
   saveBook(): void {
     this.apiService.saveBook(this.book).subscribe(
       // Recieves book without UUID, returns Book with UUID
