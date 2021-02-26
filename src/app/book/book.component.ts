@@ -10,6 +10,7 @@ import {Author} from '../model/author';
 })
 export class BookComponent implements OnInit {
 
+  id: string = "";
   // THIS SECTION IS FoR VARIABLES
   // create an array of books
   authors: Author[] = [];
