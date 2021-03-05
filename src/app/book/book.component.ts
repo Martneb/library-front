@@ -61,10 +61,10 @@ export class BookComponent implements OnInit {
     );
   }
 
-  getAuthorNameByID(authorID: string): string{
+  getAuthorNameByID(authorID: string): string {
     //Iterate thorugh the list of authors, and find the author which id matches the parameter id, get and return the name of that author
-    let author = this.authors.find(author => author.uuid===authorID);
-    if (author!=undefined){
+    let author = this.authors.find(author => author.uuid === authorID);
+    if (author != undefined) {
       return author.name;
     }
     return "n/a";
@@ -87,6 +87,16 @@ export class BookComponent implements OnInit {
         alert('Book couldn\'t be saved');
       }
     );
+  }
 
+  deleteBook(id: String): void {
+    this.apiService.deleteBook(id).subscribe(
+      res => {
+        console.log("Book with id: " + id + " removed.")
+        this.getAllBooks()
+      }, err => {
+        console.log("Couldn\'t remove book with ID: " + id)
+      }
+    );
   }
 }

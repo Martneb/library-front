@@ -33,13 +33,25 @@
           <th scope="col">Name</th>
           <th scope="col">Birthday</th>
           <th scope="col">Book(s)</th>
+          <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let author of authors">
           <td>{{author.name}}</td>
           <td>{{author.birthDate}}</td>
-          <td *ngFor="let book of author.books">{{book.name}}</td>
+          <td>
+            <table>
+              <div class="scrollable">
+                <tr *ngFor="let book of author.books">
+                  {{book.name}}
+                </tr>
+              </div>
+            </table>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)='deleteAuthor(author.uuid.toString())'>Delete</button>
+          </td>
         </tr>
         </tbody>
       </table>

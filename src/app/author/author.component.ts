@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {Author} from '../model/author';
 import {Book} from '../model/book';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-author',
@@ -29,6 +30,9 @@ export class AuthorComponent implements OnInit {
     this.apiService.getAllAuthors().subscribe(
       res => {
         this.authors = res;
+        for (let author of this.authors) {
+          this.populateAuthorWithBooks(author)
+        }
         // TODO: for every author get the books by authorID
       },
       error => {
@@ -50,5 +54,46 @@ export class AuthorComponent implements OnInit {
         alert('Author couldn\'t be saved');
       }
     );
+  }
+
+  deleteAuthor(id: String): void {
+    this.apiService.deleteAuthor(id).subscribe(
+      res => {
+        console.log("Removed author with ID: " + id)
+        this.getAllAuthors()
+      },
+      error => {
+        console.log("Couldn\'t remove author with ID: " + id)
+      }
+    );
+  }
+
+  // this method given the id returns a list of book for passed author id
+  /*
+  getAllAuthorsBooks(id:String): Book[] {
+    let books: Book[];
+    this.apiService.getBooksByAUTHORID(id).subscribe(
+      res =>{
+        res;
+      },
+      error => {
+        books = []
+      }
+    );
+
+  }
+
+   */
+
+  // This method, given the author, retrieves by the id the list of books associated with it  and puts it in the variable books of the author
+  populateAuthorWithBooks(author: Author): void {
+    this.apiService.getBooksByAUTHORID(author.uuid).subscribe(
+      res => {
+        author.books = res;
+      },
+      error => {
+        console.log("Something went wrong while retrieving books for author " + author.name)
+      }
+    )
   }
 }
