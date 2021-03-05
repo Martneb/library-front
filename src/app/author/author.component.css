@@ -1,14 +1,20 @@
-.dropdown-menu{
+.dropdown-menu {
   width: 250%;
 }
-.form-title{
+
+.form-title {
   position: absolute;
   margin-top: 10px;
   padding-bottom: 10px;
   transform: translate(100%);
   font-size: 20px;
 }
-.author-form{
+
+.author-form {
   padding-top: 20px;
   padding-bottom: 10px;
+}
+
+div.scrollable {
+  max-height: 50px;
 }
